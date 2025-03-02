@@ -24,33 +24,36 @@ local Section = Tab:AddSection({
 local playerName = game.Players.LocalPlayer.Name
 
 Tab:AddButton({
-    Name = "Welcome " .. playerName .. "! This is the best hub!",
+    Name = "Welcome " .. playerName .. "teste!",
     Callback = function()
 
         local TweenService = game:GetService("TweenService")
-local player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
 
--- 📌 Coordenadas de destino (substitua pelos valores da ilha que deseja)
-local destino = Vector3.new(500, 50, 200) -- 🔄 Edite para onde deseja teleportar
+-- Função para teleporte suave
+local function teleport(destination)
+    if humanoidRootPart then
+        local tweenInfo = TweenInfo.new(3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out) -- Tempo aumentado para suavizar
+        local goal = {CFrame = CFrame.new(destination)}
+        local tween = TweenService:Create(humanoidRootPart, tweenInfo, goal)
+        tween:Play()
 
--- ⚙️ Configuração do Tween (tempo e suavidade)
-local tweenInfo = TweenInfo.new(
-    (humanoidRootPart.Position - destino).magnitude / 250, -- 🕒 Tempo baseado na distância
-    Enum.EasingStyle.Linear, -- 🏃 Movimento constante
-    Enum.EasingDirection.Out,
-    0, -- Sem repetições
-    false, -- Não reverte
-    0 -- Sem atraso
-)
+        -- Ajustar câmera para seguir o personagem corretamente
+        local camera = workspace.CurrentCamera
+        camera.CameraSubject = character.HumanoidRootPart
+        camera.CameraType = Enum.CameraType.Custom
+    else
+        warn("❌ HumanoidRootPart não encontrado!")
+    end
+end
 
--- 🔄 Criando o Tween para mover o jogador
-local objetivo = {Position = destino}
-local tween = TweenService:Create(humanoidRootPart, tweenInfo, objetivo)
+-- Exemplo de uso: Teleportar para uma posição específica
+local destino = Vector3.new(100, 50, 200) -- 🔄 Altere para a posição desejada
+teleport(destino)
 
--- 🎯 Executa o teleporte suavemente
-tween:Play()
 
     end
 })
