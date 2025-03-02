@@ -1,85 +1,49 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
-
-
-local MainWindow = Rayfield:CreateWindow({
-	Name = "Main",
-	LoadingTitle = "Loading...",
-	LoadingSubtitle = "by Falxe",
-	ConfigurationSaving = {
-	   Enabled = true,
-	   FolderName = nil, -- Create a custom folder for your hub/game
-	   FileName = "McDonalds Hub"
-	},
-	Discord = {
-	   Enabled = false,
-	   Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
-	   RememberJoins = true -- Set this to false to make them join the discord every time they load it up
-	},
-	KeySystem = false, -- Set this to true to use our key system
-	KeySettings = {
-	   Title = "McDonalds Hub",
-	   Subtitle = "Key System",
-	   Note = "Key: McDonalds",
-	   FileName = "SiriusKey",
-	   SaveKey = true,
-	   GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-	   Key = "McDonalds"
-	}
- })
-
-
- local MainTab = MainWindow:CreateTab("Main", 4483362458) -- Title, Image
-
-
- local Button = MainTab:CreateButton({
-	Name = "print 'hello'",
-	Callback = function(v)
-		v = print('hello')
-	end,
- })
-
-
-
-
- local Toggle = MainTab:CreateToggle({
-	Name = "Infinite Jump",
-	CurrentValue = false,
-	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(InfiniteJumpEnabled)
-        local InfiniteJumpEnabled = true
-        game:GetService("UserInputService").JumpRequest:connect(function()
-            if InfiniteJumpEnabled then
-                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-            end
-        end)
-	end,
- })
-
-
-
- local Slider = MainTab:CreateSlider({
-	Name = "Walkspeed",
-	Range = {16, 250},
-	Increment = 10,
-	Suffix = "Walkspeed",
-	CurrentValue = 10,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(v)
-		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-	end,
- })
-
-
-
- local Slider = MainTab:CreateSlider({
-	Name = "JumpPower",
-	Range = {50, 500},
-	Increment = 10,
-	Suffix = "JumpPower",
-	CurrentValue = 10,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(v)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
-	end,
- })
- 
+local UILib = loadstring(game:HttpGet('https://raw.githubusercontent.com/StepBroFurious/Script/main/HydraHubUi.lua'))()
+local Window = UILib.new("Grand Piece Online", game.Players.LocalPlayer.UserId, "Buyer")
+local Category1 = Window:Category("Main", "http://www.roblox.com/asset/?id=8395621517")
+local SubButton1 = Category1:Button("Combat", "http://www.roblox.com/asset/?id=8395747586")
+local Section1 = SubButton1:Section("Section", "Left")
+Section1:Button({
+    Title = "Kill All",
+    ButtonName = "KILL!!",
+    Description = "kills everyone",
+    }, function(value)
+    print(value)
+end)
+Section1:Toggle({
+    Title = "Auto Farm Coins",
+    Description = "Optional Description here",
+    Default = false
+    }, function(value)
+    print(value)
+end)
+Section1:Slider({
+    Title = "Walkspeed",
+    Description = "",
+    Default = 16,
+    Min = 0,
+    Max = 120
+    }, function(value)
+    print(value)
+end)
+Section1:ColorPicker({
+    Title = "Colorpicker",
+    Description = "",
+    Default = Color3.new(255,0,0),
+    }, function(value)
+    print(value)
+end)
+Section1:Textbox({
+    Title = "Damage Multiplier",
+    Description = "",
+    Default = "",
+    }, function(value)
+    print(value)
+end)
+Section1:Keybind({
+    Title = "Kill All",
+    Description = "",
+    Default = Enum.KeyCode.Q,
+    }, function(value)
+    print(value)
+end)
