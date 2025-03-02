@@ -1,49 +1,53 @@
-local UILib = loadstring(game:HttpGet('https://raw.githubusercontent.com/StepBroFurious/Script/main/HydraHubUi.lua'))()
-local Window = UILib.new("Grand Piece Online", game.Players.LocalPlayer.UserId, "Buyer")
-local Category1 = Window:Category("Main", "http://www.roblox.com/asset/?id=8395621517")
-local SubButton1 = Category1:Button("Combat", "http://www.roblox.com/asset/?id=8395747586")
-local Section1 = SubButton1:Section("Section", "Left")
-Section1:Button({
-    Title = "Kill All",
-    ButtonName = "KILL!!",
-    Description = "kills everyone",
-    }, function(value)
-    print(value)
-end)
-Section1:Toggle({
-    Title = "Auto Farm Coins",
-    Description = "Optional Description here",
-    Default = false
-    }, function(value)
-    print(value)
-end)
-Section1:Slider({
-    Title = "Walkspeed",
-    Description = "",
-    Default = 16,
-    Min = 0,
-    Max = 120
-    }, function(value)
-    print(value)
-end)
-Section1:ColorPicker({
-    Title = "Colorpicker",
-    Description = "",
-    Default = Color3.new(255,0,0),
-    }, function(value)
-    print(value)
-end)
-Section1:Textbox({
-    Title = "Damage Multiplier",
-    Description = "",
-    Default = "",
-    }, function(value)
-    print(value)
-end)
-Section1:Keybind({
-    Title = "Kill All",
-    Description = "",
-    Default = Enum.KeyCode.Q,
-    }, function(value)
-    print(value)
-end)
+-- Novo script Orion Lib arrastável para criações de hubs!
+local OrionLib = loadstring(jogo:HttpGet(('https://pastebin.com/raw/WRUyYTdY')))()
+
+
+Janela local = OrionLib:MakeWindow({
+    Nome = "SEU HUB",
+    HidePremium = falso,
+    SaveConfig = verdadeiro,
+    ConfigFolder = "Nome" — Coloque o nome do seu hub ou script aqui!
+})
+
+print("Executado com sucesso.") -- Apenas uma depuração
+
+Guia local = Janela:CriarGuia({
+    Nome = "Info",
+    Ícone = "rbxassetid://1",
+    PremiumOnly = falso
+})
+
+Seção local = Guia:AdicionarSeção({
+    Nome = "Info"
+})
+
+jogador localName = jogo.Jogadores.JogadorLocal.Nome
+
+Guia:AdicionarBotão({
+    Nome = "Bem-vindo" .. playerName .. "! Este é o melhor hub!",
+    Retorno de chamada = função()
+    fim
+})
+
+Guia:AdicionarBotão({
+    Nome = "Confira nosso servidor oficial do Discord na sua área de transferência.",
+    Retorno de chamada = função()
+        definirá a área de transferência("https://discord.gg/9vsvzS6mer")
+        para a área de transferência("https://discord.gg/9vsvzS6mer")
+  fim    
+})
+
+Guia:AdicionarBotão({
+    Nome = "Rendimento Infinito",
+    Retorno de chamada = função()
+        loadstring(jogo:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  fim    
+})
+
+
+Guia:AdicionarBotão({
+    Nome = "Administrador sem nome",
+    Retorno de chamada = função()
+        loadstring(jogo:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))()
+  fim    
+})
