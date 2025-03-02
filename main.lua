@@ -1,41 +1,85 @@
---[[
-Credits goes to REDz.
-And you can find more here! [This is v5 version]
-https://github.com/REDzHUB/RedzLibV5
-And maybe some things may not work correctly (doesn't to me)
-]]--
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
 
-local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV5/main/Source.Lua"))()
 
-local Window = redzlib:MakeWindow({
-  Title = "Test",
-  SubTitle = "hello",
-  SaveFolder = "Redz Config"
-})
+local MainWindow = Rayfield:CreateWindow({
+	Name = "Main",
+	LoadingTitle = "Loading...",
+	LoadingSubtitle = "by Falxe",
+	ConfigurationSaving = {
+	   Enabled = true,
+	   FolderName = nil, -- Create a custom folder for your hub/game
+	   FileName = "McDonalds Hub"
+	},
+	Discord = {
+	   Enabled = false,
+	   Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+	   RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+	},
+	KeySystem = false, -- Set this to true to use our key system
+	KeySettings = {
+	   Title = "McDonalds Hub",
+	   Subtitle = "Key System",
+	   Note = "Key: McDonalds",
+	   FileName = "SiriusKey",
+	   SaveKey = true,
+	   GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+	   Key = "McDonalds"
+	}
+ })
 
---Tabs
 
-local Tab1 = Window:MakeTab({"Tab 1", "cool"})
+ local MainTab = MainWindow:CreateTab("Main", 4483362458) -- Title, Image
 
---Buttons
 
-Tab1:AddButton({"Print", function()
-print("Hello World!")
-end})
+ local Button = MainTab:CreateButton({
+	Name = "print 'hello'",
+	Callback = function(v)
+		v = print('hello')
+	end,
+ })
 
-local Toggle1 = Tab1:AddToggle({
-  Name = "Speed",
-  Description = "Idk",
-  Default = false
-})
 
-Tab1:AddSlider({
-  Name = "Speed",
-  Min = 1,
-  Max = 100,
-  Increase = 1,
-  Default = 16,
-  Callback = function(Value)
-  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-  end
-})
+
+
+ local Toggle = MainTab:CreateToggle({
+	Name = "Infinite Jump",
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(InfiniteJumpEnabled)
+        local InfiniteJumpEnabled = true
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            if InfiniteJumpEnabled then
+                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+            end
+        end)
+	end,
+ })
+
+
+
+ local Slider = MainTab:CreateSlider({
+	Name = "Walkspeed",
+	Range = {16, 250},
+	Increment = 10,
+	Suffix = "Walkspeed",
+	CurrentValue = 10,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(v)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+	end,
+ })
+
+
+
+ local Slider = MainTab:CreateSlider({
+	Name = "JumpPower",
+	Range = {50, 500},
+	Increment = 10,
+	Suffix = "JumpPower",
+	CurrentValue = 10,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(v)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+	end,
+ })
+ 
