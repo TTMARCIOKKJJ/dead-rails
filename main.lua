@@ -26,6 +26,32 @@ local playerName = game.Players.LocalPlayer.Name
 Tab:AddButton({
     Name = "Welcome " .. playerName .. "! This is the best hub!",
     Callback = function()
+
+        local TweenService = game:GetService("TweenService")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+
+-- 📌 Coordenadas de destino (substitua pelos valores da ilha que deseja)
+local destino = Vector3.new(500, 50, 200) -- 🔄 Edite para onde deseja teleportar
+
+-- ⚙️ Configuração do Tween (tempo e suavidade)
+local tweenInfo = TweenInfo.new(
+    (humanoidRootPart.Position - destino).magnitude / 250, -- 🕒 Tempo baseado na distância
+    Enum.EasingStyle.Linear, -- 🏃 Movimento constante
+    Enum.EasingDirection.Out,
+    0, -- Sem repetições
+    false, -- Não reverte
+    0 -- Sem atraso
+)
+
+-- 🔄 Criando o Tween para mover o jogador
+local objetivo = {Position = destino}
+local tween = TweenService:Create(humanoidRootPart, tweenInfo, objetivo)
+
+-- 🎯 Executa o teleporte suavemente
+tween:Play()
+
     end
 })
 
