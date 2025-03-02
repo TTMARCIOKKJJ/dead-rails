@@ -45,6 +45,12 @@ Tab:AddButton({
 })
 
 
+
+
+local Section = Tab:AddSection({
+    Name = "Info"
+})
+
 Tab:AddButton({
     Name = "Nameless Admin",
     Callback = function()
@@ -52,3 +58,9 @@ Tab:AddButton({
   end    
 })
 
+Tab:TogleButton({
+    Name = "Nameless Admin",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))()
+  end    
+})
