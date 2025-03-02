@@ -1,53 +1,54 @@
--- Novo script Orion Lib arrastável para criações de hubs!
-local OrionLib = loadstring(jogo:HttpGet(('https://pastebin.com/raw/WRUyYTdY')))()
+-- New draggable Orion Lib script for hub creations!
+local OrionLib = loadstring(game:HttpGet(('https://pastebin.com/raw/WRUyYTdY')))()
 
 
-Janela local = OrionLib:MakeWindow({
-    Nome = "SEU HUB",
-    HidePremium = falso,
-    SaveConfig = verdadeiro,
-    ConfigFolder = "Nome" — Coloque o nome do seu hub ou script aqui!
+local Window = OrionLib:MakeWindow({
+    Name = "YOUR HUB",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "Name" -- Put the name of your hub or script here!
 })
 
-print("Executado com sucesso.") -- Apenas uma depuração
+print("Successfully executed.") -- Just a debug
 
-Guia local = Janela:CriarGuia({
-    Nome = "Info",
-    Ícone = "rbxassetid://1",
-    PremiumOnly = falso
+local Tab = Window:MakeTab({
+    Name = "Info",
+    Icon = "rbxassetid://1",
+    PremiumOnly = false
 })
 
-Seção local = Guia:AdicionarSeção({
-    Nome = "Info"
+local Section = Tab:AddSection({
+    Name = "Info"
 })
 
-jogador localName = jogo.Jogadores.JogadorLocal.Nome
+local playerName = game.Players.LocalPlayer.Name
 
-Guia:AdicionarBotão({
-    Nome = "Bem-vindo" .. playerName .. "! Este é o melhor hub!",
-    Retorno de chamada = função()
-    fim
+Tab:AddButton({
+    Name = "Welcome " .. playerName .. "! This is the best hub!",
+    Callback = function()
+    end
 })
 
-Guia:AdicionarBotão({
-    Nome = "Confira nosso servidor oficial do Discord na sua área de transferência.",
-    Retorno de chamada = função()
-        definirá a área de transferência("https://discord.gg/9vsvzS6mer")
-        para a área de transferência("https://discord.gg/9vsvzS6mer")
-  fim    
+Tab:AddButton({
+    Name = "Check out our official discord server in your clipboard.",
+    Callback = function()
+        setclipboard("https://discord.gg/9vsvzS6mer")
+        toclipboard("https://discord.gg/9vsvzS6mer")
+  end    
 })
 
-Guia:AdicionarBotão({
-    Nome = "Rendimento Infinito",
-    Retorno de chamada = função()
-        loadstring(jogo:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-  fim    
+Tab:AddButton({
+    Name = "Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  end    
 })
 
 
-Guia:AdicionarBotão({
-    Nome = "Administrador sem nome",
-    Retorno de chamada = função()
-        loadstring(jogo:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))()
-  fim    
+Tab:AddButton({
+    Name = "Nameless Admin",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"))()
+  end    
 })
+
